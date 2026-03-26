@@ -24,10 +24,21 @@ VOLUME ["/data"]
 # Beri hak eksekusi untuk entrypoint
 RUN chmod +x entrypoint.sh
 
-# Environment variables default
-ENV REDIS_HOST=127.0.0.1
-ENV REDIS_PORT=6379
-ENV GIT_REPO_PATH=/data/mlite
+# Argumen dari build (Mencegah warning 'were not consumed' dari Papuyu)
+ARG GIT_REPO_PATH
+ARG OPENAI_API_KEY
+ARG PAPUYU_URL
+ARG REDIS_HOST
+ARG REDIS_PORT
+ARG TELEGRAM_TOKEN
+
+# Environment variables default & mapping dari ARG
+ENV GIT_REPO_PATH=${GIT_REPO_PATH:-/data/mlite}
+ENV OPENAI_API_KEY=${OPENAI_API_KEY}
+ENV PAPUYU_URL=${PAPUYU_URL}
+ENV REDIS_HOST=${REDIS_HOST:-127.0.0.1}
+ENV REDIS_PORT=${REDIS_PORT:-6379}
+ENV TELEGRAM_TOKEN=${TELEGRAM_TOKEN}
 ENV PORT=3000
 
 EXPOSE $PORT
