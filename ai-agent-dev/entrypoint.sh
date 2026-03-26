@@ -6,9 +6,10 @@ redis-server --daemonize yes
 echo "Ensuring Git Repo exists at $GIT_REPO_PATH..."
 if [ ! -d "$GIT_REPO_PATH/.git" ]; then
     echo "⚠️  Warning: Direktori $GIT_REPO_PATH belum berupa repository Git."
-    echo "    Harap mount volume repositori mlite ke /data/mlite atau lakukan git clone."
-    # Opsional: Jika Anda ingin clone otomatis jika kosong, aktifkan baris di bawah:
-    # git clone <url-repo-anda> $GIT_REPO_PATH
+    echo "    Memulai proses clone otomatis..."
+    # Memastikan direktori kosong untuk di-clone ke dalamnya (meskipun Papuyu telah mounting foldernya)
+    rm -rf "$GIT_REPO_PATH"/* "$GIT_REPO_PATH"/.* 2>/dev/null
+    git clone https://github.com/basoro/mlite "$GIT_REPO_PATH"
 else
     echo "✅ Git Repo found!"
     # Konfigurasi Git Safe Directory
