@@ -12,12 +12,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     gcc \
     && rm -rf /var/lib/apt/lists/*
 
-# Copy requirements and install
-COPY requirements.txt /app/
+# Copy requirements and install (adjusted for root build context)
+COPY wakontrol/requirements.txt /app/
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy project
-COPY . /app/
+COPY wakontrol/ /app/
 
 # Create data directory for Papuyu PaaS persistent storage mapping
 RUN mkdir -p /data
