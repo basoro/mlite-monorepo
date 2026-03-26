@@ -70,7 +70,8 @@ module.exports = {
     try {
         await git.push("origin", branch, { "--set-upstream": null });
     } catch(e) {
-        console.warn("Pull/Push might require credentials or different remotes. Skipping strict push error.");
+        console.error("❌ Push ke origin gagal! Pastikan GITHUB_TOKEN sudah diset. Error Text:", e.message);
+        throw new Error("Gagal melakukan push branch. Periksa konfigurasi kredensial Git/TOKEN GitHub Anda.");
     }
   }
 };
