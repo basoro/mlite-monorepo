@@ -30,7 +30,7 @@ new Worker(
 
       bot.sendMessage(chatId, "✅ Analisis selesai. Menerapkan ke branch baru...");
 
-      const branch = \`feature/ai-\${Date.now()}\`;
+      const branch = `feature/ai-${Date.now()}`;
       await git.checkout(branch);
       
       let commitMessage = "AI generated code";
@@ -39,7 +39,7 @@ new Worker(
         for (const action of result.actions) {
           if (action.type === 'create_file' || action.type === 'update_file') {
              filesToWrite.push({ path: action.path, content: action.content });
-             console.log(\`📝 Action: \${action.type} -> \${action.path}\`);
+             console.log(`📝 Action: ${action.type} -> ${action.path}`);
           } else if (action.type === 'delete_file') {
              await git.deleteFile(action.path);
           } else if (action.type === 'git' && action.command === 'commit') {
@@ -54,12 +54,12 @@ new Worker(
       await git.commit(commitMessage);
       await git.push(branch);
 
-      bot.sendMessage(chatId, \`🎉 Task berhasil diselesaikan!\n\n**Plan:** \${result.plan || 'Selesai'}\n**Notes:** \${result.notes || '-'}\n\nBranch: \\\`\${branch}\\\`\`, { parse_mode: 'Markdown' });
+      bot.sendMessage(chatId, `🎉 Task berhasil diselesaikan!\n\n**Plan:** ${result.plan || 'Selesai'}\n**Notes:** ${result.notes || '-'}\n\nBranch: \`${branch}\``, { parse_mode: 'Markdown' });
       console.log("✅ Code pushed to branch:", branch);
 
     } catch (err) {
       console.error("❌ Task error:", err);
-      bot.sendMessage(chatId, \`❌ Gagal memproses task. Error: \${err.message}\`);
+      bot.sendMessage(chatId, `❌ Gagal memproses task. Error: ${err.message}`);
     }
   },
   { connection }
@@ -77,7 +77,7 @@ new Worker(
       bot.sendMessage(chatId, "✅ Deploy berhasil dilakukan!");
     } catch (err) {
       console.error("❌ Deploy error:", err);
-      bot.sendMessage(chatId, \`❌ Deploy gagal. Error: \${err.message}\`);
+      bot.sendMessage(chatId, `❌ Deploy gagal. Error: ${err.message}`);
     }
   },
   { connection }
