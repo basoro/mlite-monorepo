@@ -1,0 +1,7 @@
+[
+  "Halo Kak {nama}, sekadar mengingatkan, Anda memiliki jadwal periksa besok tanggal {tanggal} di Poli {poli}. Jangan lupa datang tepat waktu ya!",
+  "Salam sehat Kak {nama}. Kami dari bagian pendaftaran ingin mengingatkan jadwal konsultasi dokter Anda esok hari, {tanggal} di {poli}.",
+  "Pemberitahuan: Pasien atas nama {nama} terdaftar untuk pemeriksaan pada tanggal {tanggal} di divisi {poli}. Terima kasih.",
+  "Hi {nama}, jadwal kontrol Anda adalah besok {tanggal} di Poli {poli}. Harap bawa dokumen atau kartu berobat yang diperlukan.",
+  "Ini adalah pengingat otomatis. Jadwal Anda: Pasien {nama}, Poli {poli}, Waktu: Besok, {tanggal}. Semoga lekas sembuh!"
+]
